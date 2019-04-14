@@ -30,3 +30,9 @@ spec:
             mountPath: /var/lib/postgresql/data
             # anydata will be stored in a subfolder named postgres
             subPath: postgres
+        env:
+          - name: PGPASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: PGPASSWORD
+                name: pgpassword

@@ -29,6 +29,11 @@ spec:
             value: postgres
           - name: PGUSER
             value: postgres
+          - name: PGPASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: pgpassword # name of the secret
+                key: PGPASSWORD # key of the key-value pair inside the secret
         resources:
           limits:
             memory: "128Mi"
