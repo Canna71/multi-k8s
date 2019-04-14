@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: worker-deployment
+  name: redis-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      component: worker
+      component: redis
   template:
     metadata:
       labels:
-        component: worker
+        component: redis
     spec:
       containers:
-      - name: worker
-        image: gcannata/multi-worker
-        # TODO: add environment variables to connect to redis
+      - name: redis
+        image: redis
         resources:
           limits:
             memory: "128Mi"
             # cpu: "900m"
-        
+        ports:
+        - containerPort: 6379

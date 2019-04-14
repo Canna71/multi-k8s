@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: worker-deployment
+  name: postgres-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      component: worker
+      component: postgres
   template:
     metadata:
       labels:
-        component: worker
+        component: postgres
     spec:
       containers:
-      - name: worker
-        image: gcannata/multi-worker
-        # TODO: add environment variables to connect to redis
+      - name: postgres
+        image: postgres
         resources:
           limits:
             memory: "128Mi"
             # cpu: "900m"
-        
+        ports:
+        - containerPort: 5432
