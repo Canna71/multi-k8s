@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      component: server
+  template:
+    metadata:
+      labels:
+        component: server
+    spec:
+      containers:
+      - name: server
+        image: gcannata/multi-server
+        # TODO: add environment variables to connect to redis and postgres
+        resources:
+          limits:
+            memory: "128Mi"
+            # cpu: "900m"
+        ports:
+        - containerPort: 5000
