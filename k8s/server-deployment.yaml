@@ -15,7 +15,20 @@ spec:
       containers:
       - name: server
         image: gcannata/multi-server
-        # TODO: add environment variables to connect to redis and postgres
+        # add environment variables to connect to redis and postgres
+        env:
+          - name: REDIS_HOST
+            value: redis-cluster-ip-service
+          - name: REDIS_PORT
+            value: "6379"
+          - name: PGHOST
+            value: postgres-cluster-ip-service
+          - name: PGPORT
+            value: "5432"
+          - name: PGDATABASE
+            value: postgres
+          - name: PGUSER
+            value: postgres
         resources:
           limits:
             memory: "128Mi"

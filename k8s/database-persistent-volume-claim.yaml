@@ -8,3 +8,4 @@ spec:
   resources:
     requests:
       storage: 2Gi
+  # storage will defaults to standard (default)   k8s.io/minikube-hostpath
