@@ -20,8 +20,12 @@ before_install:
   - gcloud container clusters get-credentials multi-cluster
   # login to docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker build -t gcannata/react-test -f ./client/Dockerfile.dev ./client/Dockerfile.dev
+  - docker build -t gcannata/react-test -f ./client/Dockerfile.dev .
 
 script:
   # to make test exit after running once remember to add -- --coverage
   - docker run gcannata/react-test npm run test -- --coverage 
+
+# deploy:
+#   provider: script
+#   script: bash ./deploy.sh
