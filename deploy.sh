@@ -1,0 +1,1 @@
+docker build -t gcannata/multi-client -f Dockerfile ./client
