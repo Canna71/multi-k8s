@@ -4,7 +4,8 @@ services:
 env:
   global:
     # Do not prompt for user input when using any SDK methods.
-  - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+    - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+    - SHA=$(git rev-parse HEAD)
 before_install:
   # installing GCP SDK
   # this is the output of travis encrypt-file
@@ -26,8 +27,8 @@ script:
   # to make test exit after running once remember to add -- --coverage
   - docker run gcannata/react-test npm run test -- --coverage 
 
-# deploy:
-#   provider: script
-#   script: bash ./deploy.sh
-#   on:
-#     branch: master
+deploy:
+  provider: script
+  script: bash ./deploy.sh
+  on:
+    branch: master
