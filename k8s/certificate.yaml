@@ -1,0 +1,21 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: 
+    cannata-cloud-tls
+  spec:
+    secretName: cannata-cloud
+    issuerRef: 
+      name: letsencrypt-prod
+      kind: ClusterIssuer
+    commonName: cannata.cloud
+    dnsNames:
+      - cannata.cloud
+      - www.cannata.cloud
+    acme:
+      config:
+        - http01:
+            ingressClass: nginx
+          domains:
+            - cannata.cloud
+            - www.cannata.cloud
